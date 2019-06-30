@@ -7,6 +7,9 @@ Style/Documentation:
 Style/NumericLiterals:
   Enabled: false
 
+Style/BlockDelimiters:
+  Enabled: false
+
 Metrics/AbcSize:
   Max: 30
 
