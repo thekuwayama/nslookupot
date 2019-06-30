@@ -1,0 +1,16 @@
+*.gem
+/vendor/
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/tmp/
+
+.byebug_history
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
+
+Gemfile.lock
+.ruby-version
+.ruby-gemset
+.rvmrc
