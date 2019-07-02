@@ -49,9 +49,7 @@ module Nslookupot
       # message length, excluding the two byte length field.
       #
       # https://tools.ietf.org/html/rfc1035#section-4.2.2
-      l = sock.read(2).unpack('C2').map.with_index { |x, i|
-        x << 8 * (1 - i)
-      }.sum
+      l = sock.read(2).unpack1('n')
 
       Resolv::DNS::Message.decode(sock.read(l))
     end
@@ -64,7 +62,7 @@ module Nslookupot
       q.rd = 1 # recursion desired
       q.add_question(name, typeclass)
       # The message is prefixed with a two byte length field
-      message = [q.encode.length].pack('N1')[2..] + q.encode
+      message = [q.encode.length].pack('n') + q.encode
       sock.write(message)
     end
 
