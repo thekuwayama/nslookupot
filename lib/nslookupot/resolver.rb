@@ -5,8 +5,8 @@ module Nslookupot
     # @param server [String]
     # @param port [Integer]
     # @param hostname [String]
-    def initialize(server = '1.1.1.1', port = 853,
-                   hostname = 'cloudflare-dns.com')
+    def initialize(server: '1.1.1.1', port: 853,
+                   hostname: 'cloudflare-dns.com')
       @server = server
       @port = port
       @hostname = hostname # for SNI
