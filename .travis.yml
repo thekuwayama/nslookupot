@@ -1,0 +1,17 @@
+sudo: false
+
+language: ruby
+
+rvm:
+  - 2.6.3
+  - ruby-head
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+
+before_install:
+  - gem install bundler
+  - bundle install
+
+script: bundle exec rake

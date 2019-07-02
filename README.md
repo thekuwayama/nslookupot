@@ -1,5 +1,8 @@
 # nslookupot
 
+[![Build Status](https://travis-ci.org/thekuwayama/nslookupot.svg?branch=master)](https://travis-ci.org/thekuwayama/nslookupot)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5df9157757f5a0bf1623/maintainability)](https://codeclimate.com/github/thekuwayama/nslookupot/maintainability)
+
 nslookupot is CLI that is `nslookup` over TLS.
 
 
@@ -38,7 +41,7 @@ Ttl:            1358
 
 ```
 
-If you need to query to 8.8.8.8, you can run it the following:
+If you need to query to `8.8.8.8`, you can run it the following:
 
 ```bash
 $ ruby bin/nslookupot.rb --server=8.8.8.8 --port=853 --hostname=dns.google www.google.com
@@ -50,7 +53,7 @@ Ttl:            223
 
 ```
 
-If you need to query to 9.9.9.9, you can run it the following:
+If you need to query to `9.9.9.9`, you can run it the following:
 
 ```bash
 $ ruby bin/nslookupot.rb --server=9.9.9.9 --port=853 --hostname=quad9.net www.quad9.net
