@@ -81,7 +81,7 @@ module Nslookupot
     def run
       opts, name, type = parse_options
 
-      resolver = Nslookupot::Resolver.new(opts)
+      resolver = Nslookupot::Resolver.new(**opts)
       puts 'Address:'.ljust(16) + opts[:server] + '#' + opts[:port].to_s
       puts '--'
       resolver.resolve_resources(name, type).each do |rr|
