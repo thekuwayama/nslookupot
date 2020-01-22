@@ -3,7 +3,8 @@ sudo: false
 language: ruby
 
 rvm:
-  - 2.6.3
+  - 2.6
+  - 2.7
   - ruby-head
 
 matrix:
