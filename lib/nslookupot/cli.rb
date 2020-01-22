@@ -52,21 +52,21 @@ module Nslookupot
       begin
         args = op.parse(argv)
       rescue OptionParser::InvalidOption => e
-        puts op.to_s
-        puts "error: #{e.message}"
+        warn op.to_s
+        warn "error: #{e.message}"
         exit 1
       end
 
       begin
         type = s2typeclass(type)
       rescue NameError
-        puts "error: unknown query type #{type}"
+        warn "error: unknown query type #{type}"
         exit 1
       end
 
       if args.size != 1
-        puts op.to_s
-        puts 'error: number of arguments is not 1'
+        warn op.to_s
+        warn 'error: number of arguments is not 1'
         exit 1
       end
 
@@ -75,7 +75,10 @@ module Nslookupot
     # rubocop: enable Metrics/MethodLength
 
     def s2typeclass(s)
-      Resolv::DNS::Resource::IN.const_get(s.upcase)
+      rr = Resolv::DNS::Resource::IN.const_get(s.upcase)
+      raise NameError unless rr < Resolv::DNS::Resource
+
+      rr
     end
 
     def run
