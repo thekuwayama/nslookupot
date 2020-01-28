@@ -89,9 +89,9 @@ module Nslookupot
       puts '--'
       resolver.resolve_resources(name, type).each do |rr|
         puts 'Name:'.ljust(16) + name
-        rr.instance_variables.each do |v|
-          k = (v[1..].capitalize + ':').ljust(16)
-          v = rr.instance_variable_get(v).to_s
+        rr.instance_variables.each do |var|
+          k = (var[1..].capitalize + ':').ljust(16)
+          v = rr.instance_variable_get(var).to_s
           puts k + v
         end
         puts ''
