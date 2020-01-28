@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'caa_rr_patch'
 gem 'openssl'
 gem 'rake'
 
