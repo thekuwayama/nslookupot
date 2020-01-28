@@ -26,7 +26,6 @@ RSpec.describe Nslookupot::CLI do
       expect { cli.s2typeclass('ANY') }.to raise_error(NameError)
       expect { cli.s2typeclass('ClassValue') }.to raise_error(NameError)
       expect { cli.s2typeclass('hoge') }.to raise_error(NameError)
-      expect { cli.s2typeclass('CAA') }.to raise_error(NameError) # not support
     end
   end
 end
