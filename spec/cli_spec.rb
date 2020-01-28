@@ -20,6 +20,7 @@ RSpec.describe Nslookupot::CLI do
       expect(cli.s2typeclass('SOA')).to eq Resolv::DNS::Resource::IN::SOA
       expect(cli.s2typeclass('TXT')).to eq Resolv::DNS::Resource::IN::TXT
       expect(cli.s2typeclass('WKS')).to eq Resolv::DNS::Resource::IN::WKS
+      expect(cli.s2typeclass('CAA')).to eq Resolv::DNS::Resource::IN::CAA
     end
 
     it 'could raise NameError' do
