@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['2.6.x', '2.7.x']
+    steps:
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: |
+          gem --version
+          gem install bundler
+          bundle --version
+          bundle install
+      - name: Run test
+        run: |
+          bundle exec rake
