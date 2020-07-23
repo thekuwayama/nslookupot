@@ -1,7 +1,7 @@
 # nslookupot
 
 [![Gem Version](https://badge.fury.io/rb/nslookupot.svg)](https://badge.fury.io/rb/nslookupot)
-[![Build Status](https://travis-ci.org/thekuwayama/nslookupot.svg?branch=master)](https://travis-ci.org/thekuwayama/nslookupot)
+[![CI](https://github.com/thekuwayama/nslookupot/workflows/CI/badge.svg)](https://github.com/thekuwayama/nslookupot/actions?workflow=CI)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5df9157757f5a0bf1623/maintainability)](https://codeclimate.com/github/thekuwayama/nslookupot/maintainability)
 
 nslookupot is CLI that is `nslookup` over TLS (version 1.2).
