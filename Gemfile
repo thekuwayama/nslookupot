@@ -7,8 +7,7 @@ gem 'openssl'
 gem 'rake'
 
 group :test do
-  gem 'pry'
-  gem 'pry-byebug'
+  gem 'byebug'
   gem 'rspec', '3.8.0'
   gem 'rubocop', '0.78.0'
 end
