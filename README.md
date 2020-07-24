@@ -24,6 +24,7 @@ Usage: nslookupot [options] name
     -s, --server VALUE               the name server IP address        (default 1.1.1.1)
     -p, --port VALUE                 the name server port number       (default 853)
     -h, --hostname VALUE             the name server hostname          (default cloudflare-dns.com)
+    -n, --no-check-sni               no check SNI                      (default false)
     -t, --type VALUE                 the type of the information query (default A)
 ```
 
