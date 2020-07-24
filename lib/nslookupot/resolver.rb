@@ -5,11 +5,17 @@ module Nslookupot
     # @param server [String]
     # @param port [Integer]
     # @param hostname [String]
-    def initialize(server: '1.1.1.1', port: 853,
-                   hostname: 'cloudflare-dns.com')
+    # @param check_sni [bool]
+    def initialize(
+      server: '1.1.1.1',
+      port: 853,
+      hostname: 'cloudflare-dns.com',
+      check_sni: true
+    )
       @server = server
       @port = port
       @hostname = hostname # for SNI
+      @check_sni = check_sni
     end
 
     # @param name [String]
@@ -72,8 +78,13 @@ module Nslookupot
       ctx = OpenSSL::SSL::SSLContext.new('TLSv1_2')
       sock = OpenSSL::SSL::SSLSocket.new(ts, ctx)
       sock.sync_close = true
-      sock.connect
-      sock.post_connection_check(@hostname)
+      if @check_sni
+        sock.hostname = @hostname
+        sock.connect
+        sock.post_connection_check(@hostname)
+      else
+        sock.connect
+      end
 
       sock
     end
