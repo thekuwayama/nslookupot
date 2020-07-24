@@ -7,11 +7,11 @@ module Nslookupot
     # @param hostname [String]
     # @param check_sni [bool]
     def initialize(
-          server: '1.1.1.1',
-          port: 853,
-          hostname: 'cloudflare-dns.com',
-          check_sni: true
-        )
+      server: '1.1.1.1',
+      port: 853,
+      hostname: 'cloudflare-dns.com',
+      check_sni: true
+    )
       @server = server
       @port = port
       @hostname = hostname # for SNI

@@ -45,7 +45,7 @@ module Nslookupot
         '-n',
         '--no-check-sni',
         "no check SNI                      (default #{!opts[:check_sni]})"
-      ) do |v|
+      ) do
         opts[:check_sni] = false
       end
 
