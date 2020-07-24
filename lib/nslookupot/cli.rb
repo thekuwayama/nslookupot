@@ -12,7 +12,8 @@ module Nslookupot
       opts = {
         server: '1.1.1.1',
         port: 853,
-        hostname: 'cloudflare-dns.com'
+        hostname: 'cloudflare-dns.com',
+        check_sni: true
       }
       type = 'A'
 
@@ -38,6 +39,14 @@ module Nslookupot
         "the name server hostname          (default #{opts[:hostname]})"
       ) do |v|
         opts[:hostname] = v
+      end
+
+      op.on(
+        '-n',
+        '--no-check-sni',
+        "no check SNI                      (default #{!opts[:check_sni]})"
+      ) do |v|
+        opts[:check_sni] = false
       end
 
       op.on(
