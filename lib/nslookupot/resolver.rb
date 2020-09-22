@@ -76,6 +76,7 @@ module Nslookupot
     def gen_sock
       ts = TCPSocket.new(@server, @port)
       ctx = OpenSSL::SSL::SSLContext.new('TLSv1_2')
+      ctx.alpn_protocols = ['dot']
       sock = OpenSSL::SSL::SSLSocket.new(ts, ctx)
       sock.sync_close = true
       if @check_sni
