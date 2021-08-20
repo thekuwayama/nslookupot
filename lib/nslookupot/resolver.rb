@@ -75,7 +75,11 @@ module Nslookupot
     # @return [OpenSSL::SSL::SSLSocket]
     def gen_sock
       ts = TCPSocket.new(@server, @port)
-      ctx = OpenSSL::SSL::SSLContext.new('TLSv1_2')
+      ctx = OpenSSL::SSL::SSLContext.new
+      ctx.min_version = OpenSSL::SSL::TLS1_2_VERSION
+      ctx.max_version = OpenSSL::SSL::TLS1_2_VERSION
+      ctx.max_version = OpenSSL::SSL::TLS1_3_VERSION \
+        if defined? OpenSSL::SSL::TLS1_3_VERSION
       ctx.alpn_protocols = ['dot']
       sock = OpenSSL::SSL::SSLSocket.new(ts, ctx)
       sock.sync_close = true
