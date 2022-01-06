@@ -35,14 +35,26 @@ module Nslookupot
     # @param name [String]
     # @param typeclass [Resolv::DNS::Resource::IN constant]
     #
+    # @raise [Nslookupot::Error]
+    #
     # @return [Array of Resolv::DNS::Resource]
     def resolve_resources(name, typeclass)
-      sock = gen_sock
-      send_msg(sock, name, typeclass)
-      msg = recv_msg(sock)
-      sock.close
+      begin
+        sock = gen_sock
+        send_msg(sock, name, typeclass)
+        msg = recv_msg(sock)
+        sock.close
+      rescue SocketError, Errno::ECONNREFUSED
+        err_msg = "#{@server}\##{@port} connection refused"
+        raise Error::DoTServerUnavailable.new, err_msg
+      rescue OpenSSL::SSL::SSLError => e
+        raise Error::DoTServerUnavailable.new, e.message
+      end
 
-      msg.answer.map(&:last)
+      result = msg.answer.map(&:last)
+      raise Error::DNNotFound if result.empty?
+
+      result
     end
 
     private
