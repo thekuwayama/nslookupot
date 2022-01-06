@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.6.x', '2.7.x', '3.0.x', '3.1.x']
+        ruby-version: ['2.7.x', '3.0.x', '3.1.x']
     steps:
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
