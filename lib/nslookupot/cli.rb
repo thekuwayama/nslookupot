@@ -4,6 +4,7 @@ require 'optparse'
 
 module Nslookupot
   class CLI
+    # rubocop: disable Metrics/AbcSize
     # rubocop: disable Metrics/MethodLength
     def parse_options(argv = ARGV)
       op = OptionParser.new
@@ -81,6 +82,7 @@ module Nslookupot
 
       [opts, args[0], type]
     end
+    # rubocop: enable Metrics/AbcSize
     # rubocop: enable Metrics/MethodLength
 
     def s2typeclass(s)
