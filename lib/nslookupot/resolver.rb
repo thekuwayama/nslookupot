@@ -46,8 +46,8 @@ module Nslookupot
         sock.close
       rescue SocketError
         raise Error::DoTServerUnavailable
-      rescue OpenSSL::SSL::SSLError
-        raise Error::DoTServerUnavailable
+      rescue OpenSSL::SSL::SSLError => e
+        raise Error::DoTServerUnavailable.new e.message
       end
 
       result = msg.answer.map(&:last)

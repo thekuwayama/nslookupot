@@ -69,13 +69,13 @@ module Nslookupot
       begin
         type = s2typeclass(type)
       rescue NameError
-        warn "** unknown query type #{type}"
+        warn "** unknown query type: #{type.upcase}"
         exit 1
       end
 
       if args.size != 1
         warn op.to_s
-        warn '** number of arguments is not 1'
+        warn '** `name` argument is not specified'
         exit 1
       end
 
@@ -107,7 +107,7 @@ module Nslookupot
         puts "** Not Found: (domain, type) = (#{name}, #{t})"
         exit 1
       rescue Error::DoTServerUnavailable => e
-        puts "** DoT Server Unavailable #{e.message}"
+        puts "** DoT Server Unavailable: #{e.message}"
         exit 1
       end
 
