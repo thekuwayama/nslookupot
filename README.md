@@ -31,12 +31,13 @@ Usage: nslookupot [options] name
 You can run it the following:
 
 ```sh-session
-$ nslookupot example.com
+$ $ nslookupot example.com
+Server:         1.1.1.1
 Address:        1.1.1.1#853
---
+
 Name:           example.com
 Address:        93.184.216.34
-Ttl:            2860
+Ttl:            83289
 
 ```
 
@@ -44,11 +45,12 @@ If you need to resolve other than A type, you can run it the following:
 
 ```sh-session
 $ nslookupot --type=cname www.youtube.com
+Server:         1.1.1.1
 Address:        1.1.1.1#853
---
+
 Name:           www.youtube.com
 Name:           youtube-ui.l.google.com
-Ttl:            1358
+Ttl:            86400
 
 ```
 
@@ -56,11 +58,12 @@ If you need to query to `8.8.8.8`, you can run it the following:
 
 ```sh-session
 $ nslookupot --server=8.8.8.8 --port=853 --hostname=dns.google www.google.com
+Server:         8.8.8.8
 Address:        8.8.8.8#853
---
+
 Name:           www.google.com
-Address:        172.217.24.132
-Ttl:            223
+Address:        142.250.196.132
+Ttl:            175
 
 ```
 
@@ -68,11 +71,12 @@ If you need to query to `9.9.9.9`, you can run it the following:
 
 ```sh-session
 $ nslookupot --server=9.9.9.9 --port=853 --hostname=quad9.net www.quad9.net
+Server:         9.9.9.9
 Address:        9.9.9.9#853
---
+
 Name:           www.quad9.net
 Address:        216.21.3.77
-Ttl:            1200
+Ttl:            100
 
 ```
 
