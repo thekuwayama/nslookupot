@@ -62,20 +62,20 @@ module Nslookupot
         args = op.parse(argv)
       rescue OptionParser::InvalidOption => e
         warn op.to_s
-        warn "error: #{e.message}"
+        warn "** #{e.message}"
         exit 1
       end
 
       begin
         type = s2typeclass(type)
       rescue NameError
-        warn "error: unknown query type #{type}"
+        warn "** unknown query type #{type}"
         exit 1
       end
 
       if args.size != 1
         warn op.to_s
-        warn 'error: number of arguments is not 1'
+        warn '** number of arguments is not 1'
         exit 1
       end
 
@@ -90,21 +90,37 @@ module Nslookupot
       rr
     end
 
+    # rubocop: disable Metrics/AbcSize
     def run
       opts, name, type = parse_options
 
-      resolver = Nslookupot::Resolver.new(**opts)
-      puts 'Address:'.ljust(16) + opts[:server] + '#' + opts[:port].to_s
-      puts '--'
-      resolver.resolve_resources(name, type).each do |rr|
+      resolver = Resolver.new(**opts)
+      puts 'Server:'.ljust(16) + opts[:server]
+      puts 'Address:'.ljust(16) + "#{opts[:server]}s\##{opts[:port]}"
+      puts
+
+      result = nil
+      begin
+        result = resolver.resolve_resources(name, type)
+      rescue Error::DNNotFound
+        t = type.name.split('::').last
+        puts "** Not Found: (domain, type) = (#{name}, #{t})"
+        exit 1
+      rescue Error::DoTServerUnavailable => e
+        puts "** DoT Server Unavailable #{e.message}"
+        exit 1
+      end
+
+      result.each do |rr|
         puts 'Name:'.ljust(16) + name
         rr.instance_variables.each do |var|
-          k = (var[1..].capitalize + ':').ljust(16)
+          k = "#{var[1..].capitalize}:".ljust(16)
           v = rr.instance_variable_get(var).to_s
           puts k + v
         end
-        puts ''
+        puts
       end
     end
+    # rubocop: enable Metrics/AbcSize
   end
 end

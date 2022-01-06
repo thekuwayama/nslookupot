@@ -8,5 +8,6 @@ require 'openssl'
 require 'optparse'
 
 require 'nslookupot/version'
+require 'nslookupot/error'
 require 'nslookupot/resolver'
 require 'nslookupot/cli'
