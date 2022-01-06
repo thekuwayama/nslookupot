@@ -104,10 +104,10 @@ module Nslookupot
         result = resolver.resolve_resources(name, type)
       rescue Error::DNNotFound
         t = type.name.split('::').last
-        puts "** Not Found: (domain, type) = (#{name}, #{t})"
+        warn "** Not Found: (domain, type) = (#{name}, #{t})"
         exit 1
       rescue Error::DoTServerUnavailable => e
-        puts "** DoT Server Unavailable: #{e.message}"
+        warn "** DoT Server Unavailable: #{e.message}"
         exit 1
       end
 
