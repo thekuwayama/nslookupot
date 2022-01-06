@@ -45,7 +45,8 @@ module Nslookupot
         msg = recv_msg(sock)
         sock.close
       rescue SocketError, Errno::ECONNREFUSED
-        raise Error::DoTServerUnavailable.new, "#{@server}\##{@port} connection refused"
+        err_msg = "#{@server}\##{@port} connection refused"
+        raise Error::DoTServerUnavailable.new, err_msg
       rescue OpenSSL::SSL::SSLError => e
         raise Error::DoTServerUnavailable.new, e.message
       end
