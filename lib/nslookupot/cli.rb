@@ -98,7 +98,7 @@ module Nslookupot
 
       resolver = Resolver.new(**opts)
       puts 'Server:'.ljust(16) + opts[:server]
-      puts 'Address:'.ljust(16) + "#{opts[:server]}s\##{opts[:port]}"
+      puts 'Address:'.ljust(16) + "#{opts[:server]}\##{opts[:port]}"
       puts
 
       result = nil
