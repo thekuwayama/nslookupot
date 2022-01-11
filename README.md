@@ -6,6 +6,8 @@
 
 nslookupot is CLI that is `nslookup` over TLS (version 1.3 or 1.2).
 
+- https://datatracker.ietf.org/doc/html/rfc7858
+
 
 ## Installation
 
@@ -31,7 +33,7 @@ Usage: nslookupot [options] name
 You can run it the following:
 
 ```sh-session
-$ $ nslookupot example.com
+$ nslookupot example.com
 Server:         1.1.1.1
 Address:        1.1.1.1#853
 
