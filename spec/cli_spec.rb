@@ -2,6 +2,7 @@
 
 require_relative 'spec_helper'
 
+# rubocop: disable Metrics/BlockLength
 RSpec.describe Nslookupot::CLI do
   context 'Resource Record (RR) TYPEs' do
     let(:cli) do
@@ -21,6 +22,8 @@ RSpec.describe Nslookupot::CLI do
       expect(cli.s2typeclass('TXT')).to eq Resolv::DNS::Resource::IN::TXT
       expect(cli.s2typeclass('WKS')).to eq Resolv::DNS::Resource::IN::WKS
       expect(cli.s2typeclass('CAA')).to eq Resolv::DNS::Resource::IN::CAA
+      expect(cli.s2typeclass('SVCB')).to eq Resolv::DNS::Resource::IN::SVCB
+      expect(cli.s2typeclass('HTTPS')).to eq Resolv::DNS::Resource::IN::HTTPS
     end
 
     it 'could raise NameError' do
@@ -30,3 +33,4 @@ RSpec.describe Nslookupot::CLI do
     end
   end
 end
+# rubocop: enable Metrics/BlockLength.
