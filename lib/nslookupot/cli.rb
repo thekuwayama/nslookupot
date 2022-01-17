@@ -116,7 +116,8 @@ module Nslookupot
       result.each do |rr|
         puts 'Name:'.ljust(16) + name
         rr.instance_variables.each do |var|
-          k = "#{var[1..].capitalize}:".ljust(16)
+          k = var.to_s.delete('@').split('_').map(&:capitalize).join
+          k = "#{k}:".ljust(16)
           v = rr.instance_variable_get(var).to_s
           puts k + v
         end
