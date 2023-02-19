@@ -3,6 +3,7 @@
 require 'optparse'
 
 module Nslookupot
+  # rubocop: disable Metrics/ClassLength
   class CLI
     # rubocop: disable Metrics/AbcSize
     # rubocop: disable Metrics/MethodLength
@@ -17,6 +18,7 @@ module Nslookupot
         check_sni: true
       }
       type = 'A'
+      print_types = false
 
       op.on(
         '-s',
@@ -58,12 +60,25 @@ module Nslookupot
         type = v
       end
 
+      op.on(
+        '',
+        '--types',
+        'print the list of query types'
+      ) do |v|
+        print_types = v
+      end
+
       op.banner += ' name'
       begin
         args = op.parse(argv)
-      rescue OptionParser::InvalidOption => e
+      rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
         warn op.to_s
         warn "** #{e.message}"
+        exit 1
+      end
+
+      if print_types
+        warn "** #{types.sort.join(', ')}"
         exit 1
       end
 
@@ -90,6 +105,15 @@ module Nslookupot
       raise NameError unless rr < Resolv::DNS::Resource
 
       rr
+    end
+
+    def types
+      Resolv::DNS::Resource::IN.constants.filter do |const|
+        c = Resolv::DNS::Resource::IN.const_get(const)
+        c < Resolv::DNS::Resource
+      rescue ArgumentError
+        false
+      end
     end
 
     # rubocop: disable Metrics/AbcSize
@@ -126,4 +150,5 @@ module Nslookupot
     end
     # rubocop: enable Metrics/AbcSize
   end
+  # rubocop: enable Metrics/ClassLength
 end

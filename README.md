@@ -28,6 +28,7 @@ Usage: nslookupot [options] name
     -h, --hostname VALUE             the name server hostname          (default cloudflare-dns.com)
     -n, --no-check-sni               no check SNI                      (default false)
     -t, --type VALUE                 the type of the information query (default A)
+        --types                      print the list of query types
 ```
 
 You can run it the following:
@@ -80,6 +81,13 @@ Name:           www.quad9.net
 Address:        216.21.3.77
 Ttl:            100
 
+```
+
+Supported query types are:
+
+```sh-session
+$ nslookupot --types
+** A, AAAA, CAA, CNAME, HINFO, HTTPS, LOC, MINFO, MX, NS, PTR, SOA, SRV, SVCB, TXT, WKS
 ```
 
 
