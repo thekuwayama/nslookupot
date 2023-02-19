@@ -61,8 +61,9 @@ module Nslookupot
       end
 
       op.on(
+        '',
         '--types',
-        desc: 'print the list of query types'
+        'print the list of query types'
       ) do |v|
         print_types = v
       end
@@ -77,7 +78,7 @@ module Nslookupot
       end
 
       if print_types
-        warn "** query types: #{types.sort.join(', ')}"
+        warn "** #{types.sort.join(', ')}"
         exit 1
       end
 
