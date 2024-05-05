@@ -2,15 +2,15 @@
 
 source 'https://rubygems.org'
 
-gem 'caa_rr_patch'
+gem 'base64'
 gem 'openssl'
-gem 'rake'
-gem 'svcb_rr_patch'
+gem 'resolv', '~> 0.4.0'
 
 group :test do
   gem 'byebug'
-  gem 'rspec', '3.8.0'
-  gem 'rubocop', '0.78.0'
+  gem 'rake'
+  gem 'rspec'
+  gem 'rubocop', '1.62.0'
 end
 
 gemspec

@@ -3,6 +3,8 @@
 require 'optparse'
 
 module Nslookupot
+  using Refinements
+
   # rubocop: disable Metrics/ClassLength
   class CLI
     # rubocop: disable Metrics/AbcSize
@@ -72,7 +74,7 @@ module Nslookupot
       begin
         args = op.parse(argv)
       rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
-        warn op.to_s
+        warn op
         warn "** #{e.message}"
         exit 1
       end
@@ -90,7 +92,7 @@ module Nslookupot
       end
 
       if args.size != 1
-        warn op.to_s
+        warn op
         warn '** `name` argument is not specified'
         exit 1
       end
@@ -102,7 +104,8 @@ module Nslookupot
 
     def s2typeclass(s)
       rr = Resolv::DNS::Resource::IN.const_get(s.upcase)
-      raise NameError unless rr < Resolv::DNS::Resource
+      raise NameError unless rr < Resolv::DNS::Resource ||
+                             rr < Resolv::DNS::Resource::IN::ServiceBinding
 
       rr
     end
@@ -110,7 +113,8 @@ module Nslookupot
     def types
       Resolv::DNS::Resource::IN.constants.filter do |const|
         c = Resolv::DNS::Resource::IN.const_get(const)
-        c < Resolv::DNS::Resource
+        c < Resolv::DNS::Resource ||
+          c < Resolv::DNS::Resource::IN::ServiceBinding
       rescue ArgumentError
         false
       end
