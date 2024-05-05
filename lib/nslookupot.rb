@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'resolv'
-require 'caa_rr_patch'
-require 'svcb_rr_patch'
-require 'socket'
 require 'openssl'
 require 'optparse'
+require 'resolv'
+require 'socket'
 
 require 'nslookupot/version'
 require 'nslookupot/error'

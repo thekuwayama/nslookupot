@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.executables   = ['nslookupot']
 
   spec.add_development_dependency 'bundler'
-  spec.add_dependency             'caa_rr_patch'
   spec.add_dependency             'openssl'
-  spec.add_dependency             'svcb_rr_patch'
+  spec.add_dependency             'resolv', '~> 0.4.0'
 end

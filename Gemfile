@@ -2,10 +2,9 @@
 
 source 'https://rubygems.org'
 
-gem 'caa_rr_patch'
 gem 'openssl'
 gem 'rake'
-gem 'svcb_rr_patch'
+gem 'resolv', '~> 0.4.0'
 
 group :test do
   gem 'byebug'
