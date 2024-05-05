@@ -102,7 +102,8 @@ module Nslookupot
 
     def s2typeclass(s)
       rr = Resolv::DNS::Resource::IN.const_get(s.upcase)
-      raise NameError unless rr < Resolv::DNS::Resource
+      raise NameError unless rr < Resolv::DNS::Resource ||
+                             rr < Resolv::DNS::Resource::IN::ServiceBinding
 
       rr
     end
@@ -110,7 +111,8 @@ module Nslookupot
     def types
       Resolv::DNS::Resource::IN.constants.filter do |const|
         c = Resolv::DNS::Resource::IN.const_get(const)
-        c < Resolv::DNS::Resource
+        c < Resolv::DNS::Resource ||
+          c < Resolv::DNS::Resource::IN::ServiceBinding
       rescue ArgumentError
         false
       end
