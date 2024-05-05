@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.executables   = ['nslookupot']
 
   spec.add_development_dependency 'bundler'
+  spec.add_dependency             'base64'
   spec.add_dependency             'openssl'
   spec.add_dependency             'resolv', '~> 0.4.0'
 end

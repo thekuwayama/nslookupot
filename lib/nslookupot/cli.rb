@@ -3,6 +3,8 @@
 require 'optparse'
 
 module Nslookupot
+  using Refinements
+
   # rubocop: disable Metrics/ClassLength
   class CLI
     # rubocop: disable Metrics/AbcSize
