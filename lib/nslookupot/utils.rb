@@ -26,23 +26,25 @@ module Nslookupot
     refine Resolv::DNS::SvcParams do
       unless method_defined?(:ocsp_uris)
         # rubocop: disable Metrics/CyclomaticComplexity
+        # rubocop: disable Metrics/PerceivedComplexity
         define_method(:to_s) do
           @params.map do |k, v|
             key = PARAMETER_REGISTRY[k]
             value = case v
-                    when Resolv::DNS::SvcParam::Mandatory
+                    in Resolv::DNS::SvcParam::Mandatory
                       v.keys.map { |i| PARAMETER_REGISTRY[i] }.join(',')
-                    when Resolv::DNS::SvcParam::ALPN
+                    in Resolv::DNS::SvcParam::ALPN
                       v.protocol_ids.join(',')
                     # NOTE: no-default-alpn is not supported
                     # https://github.com/ruby/resolv/blob/v0.4.0/lib/resolv.rb#L1942
-                    when Resolv::DNS::SvcParam::IPv4Hint
+                    in Resolv::DNS::SvcParam::IPv4Hint
                       v.addresses.join(',')
-                    when Resolv::DNS::SvcParam::Port
+                    in Resolv::DNS::SvcParam::Port
                       v.port.to_s
-                    when Resolv::DNS::SvcParam::Generic::Key5 # ech
+                    in Resolv::DNS::SvcParam::Generic if v.key_number == 5
+                      # ech
                       Base64.strict_encode64(v.value)
-                    when Resolv::DNS::SvcParam::IPv6Hint
+                    in Resolv::DNS::SvcParam::IPv6Hint
                       v.addresses.join(',')
                     else
                       v.to_s
@@ -51,6 +53,7 @@ module Nslookupot
           end.join(' ')
         end
         # rubocop: enable Metrics/CyclomaticComplexity
+        # rubocop: enable Metrics/PerceivedComplexity
       end
     end
   end

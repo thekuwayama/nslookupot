@@ -9,8 +9,8 @@ gem 'resolv', '~> 0.4.0'
 group :test do
   gem 'byebug'
   gem 'rake'
-  gem 'rspec', '3.8.0'
-  gem 'rubocop', '0.78.0'
+  gem 'rspec'
+  gem 'rubocop', '1.62.0'
 end
 
 gemspec
