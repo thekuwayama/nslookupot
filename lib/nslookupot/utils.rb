@@ -42,7 +42,9 @@ module Nslookupot
                       v.addresses.join(',')
                     in Resolv::DNS::SvcParam::Port
                       v.port.to_s
-                    in Resolv::DNS::SvcParam::Generic if v.key_number == 5
+                    in Resolv::DNS::SvcParam::Generic \
+                      if Resolv::DNS::SvcParam::Generic.const_get(:Key5) &&
+                         v.is_a?(Resolv::DNS::SvcParam::Generic::Key5)
                       # ech
                       Base64.strict_encode64(v.value)
                     in Resolv::DNS::SvcParam::IPv6Hint
