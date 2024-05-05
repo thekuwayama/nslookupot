@@ -10,13 +10,13 @@ RSpec.describe Nslookupot::Refinements do
     let(:mandatory) do
       Resolv::DNS::SvcParams.new(
         [
-          Resolv::DNS::SvcParam::Mandatory.new([5, 6, 8, 6544])
+          Resolv::DNS::SvcParam::Mandatory.new([5, 6, 8, 65534])
         ]
       )
     end
 
     it 'could to_s' do
-      expect(mandatory.to_s).to eq 'mandatory=ech,ipv6hint,undefine8,undefine6544'
+      expect(mandatory.to_s).to eq 'mandatory=ech,ipv6hint,undefine8,key65534'
     end
 
     let(:alpn) do
