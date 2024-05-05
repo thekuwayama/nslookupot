@@ -10,6 +10,7 @@ module Nslookupot
       ipv4hint
       ech
       ipv6hint
+      dohpath
     ]
     # rubocop:disable Security/Eval
     (8...65280).each do |nnnn|
@@ -46,6 +47,8 @@ module Nslookupot
                       Base64.strict_encode64(v.value)
                     in Resolv::DNS::SvcParam::IPv6Hint
                       v.addresses.join(',')
+                    in Resolv::DNS::SvcParam::DoHPath
+                      v.template.encode('utf-8')
                     else
                       v.to_s
                     end

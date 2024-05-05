@@ -66,6 +66,18 @@ RSpec.describe Nslookupot::Refinements do
     it 'could to_s' do
       expect(ipv6hint.to_s).to eq 'ipv6hint=2001:db8::1'
     end
+
+    let(:dohpath) do
+      Resolv::DNS::SvcParams.new(
+        [
+          Resolv::DNS::SvcParam::DoHPath.new('/dns-query{?dns}')
+        ]
+      )
+    end
+
+    it 'could to_s' do
+      expect(dohpath.to_s).to eq 'dohpath=/dns-query{?dns}'
+    end
   end
 end
 # rubocop: enable Metrics/BlockLength
