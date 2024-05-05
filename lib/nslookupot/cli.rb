@@ -72,7 +72,7 @@ module Nslookupot
       begin
         args = op.parse(argv)
       rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
-        warn op.to_s
+        warn op
         warn "** #{e.message}"
         exit 1
       end
@@ -90,7 +90,7 @@ module Nslookupot
       end
 
       if args.size != 1
-        warn op.to_s
+        warn op
         warn '** `name` argument is not specified'
         exit 1
       end
